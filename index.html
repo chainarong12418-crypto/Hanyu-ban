@@ -1,202 +1,273 @@
-export default function ChineseCourseStore() {
-  const courses = [
-    {
-      title: "Chinese Beginner A1",
-      level: "เริ่มต้น",
-      price: "฿1,290",
-      desc: "ปูพื้นฐานพินอิน คำศัพท์ และบทสนทนาใช้ได้จริง",
-      image:
-        "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop",
-    },
-    {
-      title: "HSK 3 Intensive",
-      level: "ระดับกลาง",
-      price: "฿2,490",
-      desc: "เตรียมสอบ HSK พร้อมแบบฝึกหัดและข้อสอบจำลอง",
-      image:
-        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop",
-    },
-    {
-      title: "Chinese for Business",
-      level: "ธุรกิจ",
-      price: "฿3,290",
-      desc: "ภาษาจีนสำหรับการทำงาน การประชุม และการค้าขาย",
-      image:
-        "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop",
-    },
-  ];
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chinese Course Academy</title>
 
-  const reviews = [
-    {
-      name: "Mint",
-      text: "เรียนแล้วพูดจีนได้จริง เข้าใจง่ายมาก",
-    },
-    {
-      name: "Best",
-      text: "ครูสอนสนุก มีแบบฝึกหัดครบ เหมาะกับคนเริ่มต้น",
-    },
-    {
-      name: "Fah",
-      text: "สอบ HSK ผ่านหลังเรียนคอร์สนี้ คะแนนดีขึ้นมาก",
-    },
-  ];
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: "Prompt", sans-serif;
+    }
 
-  return (
-    <div className="min-h-screen bg-white text-gray-800">
-      {/* Navbar */}
-      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-red-600">HanYu Academy</h1>
-          </div>
+    body{
+      background:#f5f7fb;
+      color:#333;
+    }
 
-          <nav className="hidden md:flex gap-8 font-medium">
-            <a href="#courses" className="hover:text-red-500">
-              คอร์สเรียน
-            </a>
-            <a href="#about" className="hover:text-red-500">
-              เกี่ยวกับเรา
-            </a>
-            <a href="#reviews" className="hover:text-red-500">
-              รีวิว
-            </a>
-            <a href="#contact" className="hover:text-red-500">
-              ติดต่อ
-            </a>
-          </nav>
+    header{
+      background: linear-gradient(135deg,#c40000,#ff4d4d);
+      color:white;
+      padding:60px 20px;
+      text-align:center;
+    }
 
-          <button className="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-xl shadow-lg transition">
-            สมัครเรียน
-          </button>
-        </div>
-      </header>
+    header h1{
+      font-size:48px;
+      margin-bottom:15px;
+    }
 
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-red-50 to-orange-100">
-        <div className="max-w-7xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <p className="text-red-600 font-semibold mb-3">
-              เรียนภาษาจีนออนไลน์ แบบเข้าใจง่าย
-            </p>
+    header p{
+      font-size:20px;
+      opacity:0.95;
+    }
 
-            <h2 className="text-5xl font-black leading-tight mb-6">
-              เปิดโลก
-              <span className="text-red-600"> ภาษาจีน </span>
-              กับคอร์สเรียนคุณภาพ
-            </h2>
+    nav{
+      background:white;
+      padding:15px;
+      text-align:center;
+      box-shadow:0 2px 10px rgba(0,0,0,0.1);
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
 
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              เรียนได้ทุกที่ ทุกเวลา พร้อมวิดีโอ บทเรียน แบบฝึกหัด
-              และกลุ่มดูแลนักเรียนโดยเฉพาะ เหมาะสำหรับผู้เริ่มต้นจนถึงผู้เตรียมสอบ HSK
-            </p>
+    nav a{
+      text-decoration:none;
+      margin:0 15px;
+      color:#c40000;
+      font-weight:bold;
+      transition:0.3s;
+    }
 
-            <div className="flex flex-wrap gap-4">
-              <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-2xl text-lg shadow-xl transition">
-                ดูคอร์สทั้งหมด
-              </button>
+    nav a:hover{
+      color:#ff4d4d;
+    }
 
-              <button className="border border-red-600 text-red-600 hover:bg-red-50 px-8 py-4 rounded-2xl text-lg transition">
-                ทดลองเรียนฟรี
-              </button>
-            </div>
-          </div>
+    .hero{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+      padding:60px 20px;
+      gap:40px;
+    }
 
-          <div className="relative">
-            <img
-              src="https://images.unsplash.com/photo-1513258496099-48168024aec0?q=80&w=1200&auto=format&fit=crop"
-              alt="Chinese Learning"
-              className="rounded-[32px] shadow-2xl object-cover h-[500px] w-full"
-            />
+    .hero-text{
+      max-width:500px;
+    }
 
-            <div className="absolute -bottom-6 -left-6 bg-white rounded-3xl p-6 shadow-2xl w-64">
-              <p className="text-3xl font-black text-red-600">5,000+</p>
-              <p className="text-gray-600 mt-2">นักเรียนที่เรียนกับเรา</p>
-            </div>
-          </div>
-        </div>
-      </section>
+    .hero-text h2{
+      font-size:38px;
+      margin-bottom:20px;
+      color:#c40000;
+    }
 
-      {/* Stats */}
-      <section className="py-14 bg-white">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-          <div className="bg-gray-50 rounded-3xl p-8 shadow-sm">
-            <h3 className="text-4xl font-black text-red-600">50+</h3>
-            <p className="mt-2 text-gray-600">คอร์สเรียน</p>
-          </div>
+    .hero-text p{
+      font-size:18px;
+      line-height:1.8;
+    }
 
-          <div className="bg-gray-50 rounded-3xl p-8 shadow-sm">
-            <h3 className="text-4xl font-black text-red-600">20+</h3>
-            <p className="mt-2 text-gray-600">อาจารย์ผู้สอน</p>
-          </div>
+    .btn{
+      display:inline-block;
+      margin-top:25px;
+      padding:14px 30px;
+      background:#c40000;
+      color:white;
+      text-decoration:none;
+      border-radius:10px;
+      transition:0.3s;
+    }
 
-          <div className="bg-gray-50 rounded-3xl p-8 shadow-sm">
-            <h3 className="text-4xl font-black text-red-600">95%</h3>
-            <p className="mt-2 text-gray-600">สอบผ่าน HSK</p>
-          </div>
+    .btn:hover{
+      background:#ff4d4d;
+      transform:translateY(-2px);
+    }
 
-          <div className="bg-gray-50 rounded-3xl p-8 shadow-sm">
-            <h3 className="text-4xl font-black text-red-600">24/7</h3>
-            <p className="mt-2 text-gray-600">เรียนได้ทุกเวลา</p>
-          </div>
-        </div>
-      </section>
+    .hero img{
+      width:350px;
+      border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    }
 
-      {/* Courses */}
-      <section id="courses" className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <p className="text-red-600 font-semibold mb-3">COURSES</p>
-            <h2 className="text-4xl font-black">คอร์สยอดนิยม</h2>
-          </div>
+    .courses{
+      padding:70px 20px;
+      text-align:center;
+      background:white;
+    }
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {courses.map((course, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-[28px] overflow-hidden shadow-lg hover:-translate-y-2 transition duration-300"
-              >
-                <img
-                  src={course.image}
-                  alt={course.title}
-                  className="h-56 w-full object-cover"
-                />
+    .courses h2{
+      font-size:40px;
+      margin-bottom:40px;
+      color:#c40000;
+    }
 
-                <div className="p-7">
-                  <span className="bg-red-100 text-red-600 px-4 py-1 rounded-full text-sm font-semibold">
-                    {course.level}
-                  </span>
+    .course-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+      max-width:1200px;
+      margin:auto;
+    }
 
-                  <h3 className="text-2xl font-bold mt-5 mb-3">
-                    {course.title}
-                  </h3>
+    .card{
+      background:#fff;
+      border-radius:20px;
+      padding:30px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.1);
+      transition:0.3s;
+    }
 
-                  <p className="text-gray-600 leading-relaxed mb-6">
-                    {course.desc}
-                  </p>
+    .card:hover{
+      transform:translateY(-10px);
+    }
 
-                  <div className="flex items-center justify-between">
-                    <p className="text-2xl font-black text-red-600">
-                      {course.price}
-                    </p>
+    .card h3{
+      color:#c40000;
+      margin-bottom:15px;
+    }
 
-                    <button className="bg-red-600 hover:bg-red-700 text-white px-5 py-3 rounded-xl transition">
-                      สมัคร
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+    .card p{
+      line-height:1.7;
+    }
 
-      <!-- TEAM -->
+    .members{
+      padding:70px 20px;
+      background:#f5f7fb;
+      text-align:center;
+    }
 
-  <section class="team">
+    .members h2{
+      font-size:40px;
+      color:#c40000;
+      margin-bottom:40px;
+    }
 
-    <h2>Our Team</h2>
+    .member-box{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:30px;
+    }
 
-    <div class="team-container">
+    .member{
+      background:white;
+      padding:30px;
+      width:320px;
+      border-radius:20px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .member h3{
+      margin-bottom:15px;
+      color:#c40000;
+    }
+
+    .member a{
+      text-decoration:none;
+      color:white;
+      background:#c40000;
+      padding:12px 20px;
+      display:inline-block;
+      margin-top:15px;
+      border-radius:10px;
+      transition:0.3s;
+    }
+
+    .member a:hover{
+      background:#ff4d4d;
+    }
+
+    footer{
+      background:#c40000;
+      color:white;
+      text-align:center;
+      padding:20px;
+      margin-top:40px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Chinese Course Academy</h1>
+    <p>เรียนภาษาจีนออนไลน์ พัฒนาทักษะ ฟัง พูด อ่าน เขียน</p>
+  </header>
+
+  <nav>
+    <a href="#home">หน้าแรก</a>
+    <a href="#courses">คอร์สเรียน</a>
+    <a href="#members">สมาชิก</a>
+  </nav>
+
+  <section class="hero" id="home">
+
+    <div class="hero-text">
+      <h2>เริ่มเรียนภาษาจีนกับเรา</h2>
+
+      <p>
+        เว็บไซต์สำหรับขายคอร์สเรียนภาษาจีนออนไลน์
+        เหมาะสำหรับผู้เริ่มต้นจนถึงระดับ HSK
+        พร้อมเทคนิคการจำคำศัพท์ การสนทนา
+        และการเตรียมสอบแบบเข้าใจง่าย
+      </p>
+
+      <a href="#courses" class="btn">ดูคอร์สเรียน</a>
+    </div>
+
+    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop" alt="Chinese Learning">
+
+  </section>
+
+  <section class="courses" id="courses">
+
+    <h2>คอร์สยอดนิยม</h2>
+
+    <div class="course-grid">
+
+      <div class="card">
+        <h3>Chinese Beginner</h3>
+        <p>
+          เรียนพื้นฐานภาษาจีนตั้งแต่พินอิน
+          คำศัพท์ และบทสนทนาในชีวิตประจำวัน
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>HSK Preparation</h3>
+        <p>
+          เตรียมสอบ HSK พร้อมแนวข้อสอบจริง
+          เทคนิคจำศัพท์และการทำข้อสอบ
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Chinese Speaking</h3>
+        <p>
+          ฝึกพูดภาษาจีนกับสถานการณ์จริง
+          เพิ่มความมั่นใจในการสื่อสาร
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
 
       <!-- MEMBER 1 -->
 
